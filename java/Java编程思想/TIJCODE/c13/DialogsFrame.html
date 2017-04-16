@@ -1,0 +1,63 @@
+<html><head><title>Display page for Dialogs at www.BruceEckel.com</title></head><FONT FACE="Verdana,Tahoma,Arial,Helvetica,Sans"><H2>Dialogs.java</H2><hr></FONT>
+<OBJECT classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+    width="125" height="75" align="baseline"
+    codebase="http://java.sun.com/products/plugin/1.2.2/jinstall-1_2_2-win.cab#Version=1,2,2,0">
+<PARAM NAME="code" VALUE="Dialogs.class">
+<PARAM NAME="codebase" VALUE=".">
+<PARAM NAME="type" VALUE="application/x-java-applet;version=1.2.2">
+<COMMENT>
+    <EMBED type="application/x-java-applet;version=1.2.2" 
+       width="125" height="75" align="baseline" 
+       code="Dialogs.class" 
+       codebase="."
+       pluginspage="http://java.sun.com/products/plugin/1.2/plugin-install.html">
+    <NOEMBED>
+    </COMMENT>
+       No Java 2 support for APPLET!!
+    </NOEMBED></EMBED>
+</OBJECT>
+<FONT SIZE="+3"><PRE><B>
+//: c13:Dialogs.java
+// From 'Thinking in Java, 2nd ed.' by Bruce Eckel
+// www.BruceEckel.com. See copyright notice in CopyRight.txt.
+// Creating and using Dialog Boxes.
+// &lt;applet code=Dialogs width=125 height=75&gt;
+// &lt;/applet&gt;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+import com.bruceeckel.swing.*;
+
+class MyDialog extends JDialog {
+  public MyDialog(JFrame parent) {
+    super(parent, "My dialog", true);
+    Container cp = getContentPane();
+    cp.setLayout(new FlowLayout());
+    cp.add(new JLabel("Here is my dialog"));
+    JButton ok = new JButton("OK");
+    ok.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e){
+        dispose(); // Closes the dialog
+      }
+    });
+    cp.add(ok);
+    setSize(150,125);
+  }
+}
+
+public class Dialogs extends JApplet {
+  JButton b1 = new JButton("Dialog Box");
+  MyDialog dlg = new MyDialog(null);
+  public void init() {
+    b1.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e){
+        dlg.show();
+      }
+    });
+    getContentPane().add(b1);
+  }
+  public static void main(String[] args) {
+    Console.run(new Dialogs(), 125, 75);
+  }
+} ///:~
+</B></PRE></FONT></body></html>

@@ -1,0 +1,53 @@
+<html><head><title>Display page for TextPane at www.BruceEckel.com</title></head><FONT FACE="Verdana,Tahoma,Arial,Helvetica,Sans"><H2>TextPane.java</H2><hr></FONT>
+<OBJECT classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+    width="475" height="425" align="baseline"
+    codebase="http://java.sun.com/products/plugin/1.2.2/jinstall-1_2_2-win.cab#Version=1,2,2,0">
+<PARAM NAME="code" VALUE="TextPane.class">
+<PARAM NAME="codebase" VALUE=".">
+<PARAM NAME="type" VALUE="application/x-java-applet;version=1.2.2">
+<COMMENT>
+    <EMBED type="application/x-java-applet;version=1.2.2" 
+       width="475" height="425" align="baseline" 
+       code="TextPane.class" 
+       codebase="."
+       pluginspage="http://java.sun.com/products/plugin/1.2/plugin-install.html">
+    <NOEMBED>
+    </COMMENT>
+       No Java 2 support for APPLET!!
+    </NOEMBED></EMBED>
+</OBJECT>
+<FONT SIZE="+3"><PRE><B>
+//: c13:TextPane.java
+// From 'Thinking in Java, 2nd ed.' by Bruce Eckel
+// www.BruceEckel.com. See copyright notice in CopyRight.txt.
+// The JTextPane control is a little editor.
+// &lt;applet code=TextPane width=475 height=425&gt;
+// &lt;/applet&gt;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import com.bruceeckel.swing.*;
+import com.bruceeckel.util.*;
+
+public class TextPane extends JApplet {
+  JButton b = new JButton("Add Text");
+  JTextPane tp = new JTextPane();
+  static Generator sg = 
+    new Arrays2.RandStringGenerator(7);  
+  public void init() {
+    b.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e){
+        for(int i = 1; i &lt; 10; i++)
+          tp.setText(tp.getText() + 
+            sg.next() + "\n");
+      }
+    });
+    Container cp = getContentPane();
+    cp.add(new JScrollPane(tp));
+    cp.add(BorderLayout.SOUTH, b);
+  }
+  public static void main(String[] args) {
+    Console.run(new TextPane(), 475, 425);
+  }
+} ///:~
+</B></PRE></FONT></body></html>

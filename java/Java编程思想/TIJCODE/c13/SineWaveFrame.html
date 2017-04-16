@@ -1,0 +1,86 @@
+<html><head><title>Display page for SineWave at www.BruceEckel.com</title></head><FONT FACE="Verdana,Tahoma,Arial,Helvetica,Sans"><H2>SineWave.java</H2><hr></FONT>
+<OBJECT classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+    width="700" height="400" align="baseline"
+    codebase="http://java.sun.com/products/plugin/1.2.2/jinstall-1_2_2-win.cab#Version=1,2,2,0">
+<PARAM NAME="code" VALUE="SineWave.class">
+<PARAM NAME="codebase" VALUE=".">
+<PARAM NAME="type" VALUE="application/x-java-applet;version=1.2.2">
+<COMMENT>
+    <EMBED type="application/x-java-applet;version=1.2.2" 
+       width="700" height="400" align="baseline" 
+       code="SineWave.class" 
+       codebase="."
+       pluginspage="http://java.sun.com/products/plugin/1.2/plugin-install.html">
+    <NOEMBED>
+    </COMMENT>
+       No Java 2 support for APPLET!!
+    </NOEMBED></EMBED>
+</OBJECT>
+<FONT SIZE="+3"><PRE><B>
+//: c13:SineWave.java
+// From 'Thinking in Java, 2nd ed.' by Bruce Eckel
+// www.BruceEckel.com. See copyright notice in CopyRight.txt.
+// Drawing with Swing, using a JSlider.
+// &lt;applet code=SineWave
+//  width=700 height=400&gt;&lt;/applet&gt;
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.*;
+import com.bruceeckel.swing.*;
+
+class SineDraw extends JPanel {
+  static final int SCALEFACTOR = 200;
+  int cycles;
+  int points;
+  double[] sines;
+  int[] pts;
+  SineDraw() { setCycles(5); }
+  public void setCycles(int newCycles) {
+    cycles = newCycles;
+    points = SCALEFACTOR * cycles * 2;
+    sines = new double[points];
+    pts = new int[points];
+    for(int i = 0; i &lt; points; i++) {
+      double radians = (Math.PI/SCALEFACTOR) * i;
+      sines[i] = Math.sin(radians);
+    }
+    repaint();
+  }    
+  public void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    int maxWidth = getWidth();
+    double hstep = (double)maxWidth/(double)points;
+    int maxHeight = getHeight();
+    for(int i = 0; i &lt; points; i++)
+      pts[i] = (int)(sines[i] * maxHeight/2 * .95
+                     + maxHeight/2);
+    g.setColor(Color.red);
+    for(int i = 1; i &lt; points; i++) {
+      int x1 = (int)((i - 1) * hstep);
+      int x2 = (int)(i * hstep);
+      int y1 = pts[i-1];
+      int y2 = pts[i];
+      g.drawLine(x1, y1, x2, y2);
+    }
+  }
+}
+
+public class SineWave extends JApplet {
+  SineDraw sines = new SineDraw();
+  JSlider cycles = new JSlider(1, 30, 5);
+  public void init() {
+    Container cp = getContentPane();
+    cp.add(sines);
+    cycles.addChangeListener(new ChangeListener(){
+      public void stateChanged(ChangeEvent e) {
+        sines.setCycles(
+          ((JSlider)e.getSource()).getValue());
+      }
+    });
+    cp.add(BorderLayout.SOUTH, cycles);
+  }
+  public static void main(String[] args) {
+    Console.run(new SineWave(), 700, 400);
+  }
+} ///:~
+</B></PRE></FONT></body></html>

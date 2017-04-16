@@ -1,0 +1,56 @@
+<html><head><title>Display page for BangBeanTest at www.BruceEckel.com</title></head><FONT FACE="Verdana,Tahoma,Arial,Helvetica,Sans"><H2>BangBeanTest.java</H2><hr></FONT>
+<OBJECT classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+    width="400" height="500" align="baseline"
+    codebase="http://java.sun.com/products/plugin/1.2.2/jinstall-1_2_2-win.cab#Version=1,2,2,0">
+<PARAM NAME="code" VALUE="BangBeanTest.class">
+<PARAM NAME="codebase" VALUE=".">
+<PARAM NAME="type" VALUE="application/x-java-applet;version=1.2.2">
+<COMMENT>
+    <EMBED type="application/x-java-applet;version=1.2.2" 
+       width="400" height="500" align="baseline" 
+       code="BangBeanTest.class" 
+       codebase="."
+       pluginspage="http://java.sun.com/products/plugin/1.2/plugin-install.html">
+    <NOEMBED>
+    </COMMENT>
+       No Java 2 support for APPLET!!
+    </NOEMBED></EMBED>
+</OBJECT>
+<FONT SIZE="+3"><PRE><B>
+//: c13:BangBeanTest.java
+// From 'Thinking in Java, 2nd ed.' by Bruce Eckel
+// www.BruceEckel.com. See copyright notice in CopyRight.txt.
+// &lt;applet code=BangBeanTest 
+// width=400 height=500&gt;&lt;/applet&gt;
+import bangbean.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import com.bruceeckel.swing.*;
+
+public class BangBeanTest extends JApplet {
+  JTextField txt = new JTextField(20);
+  // During testing, report actions:
+  class BBL implements ActionListener {
+    int count = 0;
+    public void actionPerformed(ActionEvent e){
+      txt.setText("BangBean action "+ count++);
+    }
+  }
+  public void init() {
+    BangBean bb = new BangBean();
+    try {
+      bb.addActionListener(new BBL());
+    } catch(TooManyListenersException e) {
+      txt.setText("Too many listeners");
+    }
+    Container cp = getContentPane();
+    cp.add(bb);
+    cp.add(BorderLayout.SOUTH, txt);
+  }
+  public static void main(String[] args) {
+    Console.run(new BangBeanTest(), 400, 500);
+  }
+} ///:~
+</B></PRE></FONT></body></html>

@@ -1,0 +1,165 @@
+<HTML>
+<HEAD><META http-equiv="Content-Type" content="text/html">
+<TITLE>Thinking in Java, 2nd Edition: Revision History</TITLE>
+<STYLE TYPE="text/css">
+<!--
+	 <!BODY, TD, P, FONT, INPUT { font-family: "Verdana, Helvetica", Arial;}>
+-->	 
+</STYLE>
+</HEAD>
+<h1>Revision 11</h1>
+
+<h3>Revision history for Thinking in Java, 2nd edition</h3>
+Please note that some chapters have not yet been rewritten (see below).
+
+<hr>
+Full text, source code and additional information available at 
+<A HREF="http://www.BruceEckel.com">www.BruceEckel.com</A>.
+<hr>
+To be informed of future releases of this document and other information about object-oriented books, documents, seminars and CDs, subscribe to my free newsletter. Just send any email to: 
+<A HREF="mailto:join-eckel-oo-programming@earth.lyris.net">
+join-eckel-oo-programming@earth.lyris.net</A><hr>
+<!--------------------------------------------------------->
+<h3>Chapters left to rewrite:</h3>
+<Blockquote>
+<h4>
+Chapter 15: Distributed Computing<br>
+</h4>
+</Blockquote>
+<hr>
+<h2>Revision history:</h2>
+
+<h4>Revision 11, April X, 2000:</h4>
+<UL>
+<LI> Reworked a lot of the exception handlers. I was stubbing out exceptions, which
+     is a bad practice.
+</UL>
+
+<h4>Revision 10, April 4, 2000:</h4>
+<UL>
+<LI> Rewrote Chapter 14 (Multiple Threads) and added exercises.
+<LI> Rewrote Chapter 13 (Creating Windows and Applets). It's now completely Swing based,
+     and almost everything is displayed in an html page (these are in the source-code
+     downloads). One of the biggest rewrites in the 
+     book, but I think it came out reasonably well. Added exercises.
+<LI> Rewrote Chapter 11 (The Java I/O System), and added exercises.
+<LI> Incorporated copyeditor's corrections for Chapter 5, 6, 7, 8, 9, 10, 12, and all appendices.
+<LI> Made some corrections to Appendix C.
+<LI> Added the sections titled "Nesting interfaces" and "Reaching outward from a multiply-nested class" to Chapter 8 ("Interfaces and Inner Classes"). From questions by Martin Danner during the SD2000 tutorial.
+</UL>
+
+<h4>Revision 9, March 17, 2000:</h4>
+<UL>
+<LI> The primary reason for this release is for my 3-day tutorial at the SD conference. As I
+     was bringing the "Hands-On Java" presentation material up to date with the current version
+     of the book, I ended up making a fair number of code changes in the last chapters.
+<LI> Reworked all the GUI examples by creating Console.java which combines all the necessary 
+     commands for running an application or applet into the overloaded run() method. Converted 
+     most non-applets to applets and added Console.run() to them, so they can now be used from 
+     the command-line, with the appletviewer or in web pages (which are automatically generated 
+     for appropriate chapters). 
+<LI> The Servlet and JSP examples now have their own HTML pages. However, you must set up Tomcat
+     (See www.apache.org) and copy the files into the appropriate directory (which is performed by
+     the makefiles, but you'll have to modify paths) and run tomcat in order for it to work.
+<LI> Incorporated copyeditor's corrections for Chapter 4
+<LI> Made array definitions use a consistent syntax ('[]' associated with the type, not the id)
+<LI> Some changes to EJB section
+</UL>
+
+<h4>Revision 8, March 7, 2000:</h4>
+<UL>
+<LI>Complete rewrite of Chapter 9 for the Java 2 collections. Changed all the existing examples,
+    removed many of them, added lots of new ones. I'm particularly pleased with the section on
+    hashing, where I created my own simple hash map as a demonstration. Many exercises added.
+<LI>Rewrote Chapter 10 and added exercises
+<LI>Rewrote Chapter 12 and added exercises
+<LI>Rewrote Appendix A and added exercises
+<LI>Rewrote Appendix B, modifying the examples so that they work both under Win32 
+   (configured by default for the free Borland C++ compiler, with Visual C++ configuration
+    information also in the makefile) and Linux, using g++. Had to hack the Linux stuff a 
+    little because I couldn't figure out how to set the library path properly 
+    <FONT COLOR="#FF0000">(hints are appreciated!)</FONT>
+<LI>Rewrote Appendix C quite a bit
+<LI>Rewrote Appendix D
+<LI>Integrated copyeditor's edits including the frontmatter up through the end of Chapter 3.
+<LI>After thought and consultation, decided to change "handle" to "reference" throughout the book.
+<LI>Went through and incorporated many of the corrections on the pending correction list.
+<LI><FONT COLOR="#FF0000"><B>Turned the "Design Patterns" chapter into its own book: "Thinking in Patterns with Java."</B></FONT> This chapter had begun bursting at the seams, and was a major obstacle in getting the book out on schedule. Also, it was not material that was covered in the 5-day seminar, but instead has its own seminar and clearly justifies its own book. More information on this project will be posted as it develops. (Currently available only as a Word 
+<a href="ftp://www.mindview.net/pub/eckel/TIPatterns/">document</a>).
+</UL>
+
+<h4>Revision 7, Feb 21, 2000:</h4>
+<UL>
+<LI>Rewrote Chapter 5 and added exercises
+<LI>Rewrote Chapter 6 and added exercises
+<LI>Broke Chapter 7 into two chapters: 7: Polymorphism and 8: Interfaces and Inner classes. This
+    was in the making for quite awhile, because this lecture during the HOJ seminars was way
+    too long.
+<LI>Rewrote Chapter 7 and added exercises
+<LI>Rewrote Chapter 8 and added exercises
+<LI>Finalized chapter organization by absorbing the "Enterprise Programming" chapter into the "Distributed Computing" chapter. The intent is that the enterprise programming stuff will stay stimple and introductory, to give people a feel for it so they are comfortable tackling more complex books. A future edition of the book may break Enterprise Programming into its own chapter if this seems appropriate.
+<LI>Renumbered everything to reflect the new chapters
+<LI>Fixed the footers so the chapter numbers and titles are correct
+</UL>
+
+<h4>Revision 6, Feb 16, 2000</h4>
+Rewrote Preface, Introduction, and Chapters 1 - 4, which are now ready for copy-editing. Added more exercises to Chapters 2 - 4. Simplified initial example in Chapter 2 and added descriptions of downloading JDK, running the compiler and executing programs. 
+
+<h4>Revision 5B, Feb 6, 2000</h4>
+No book content changes. Fixed a lot of the formatting issues in the HTML document, and added color syntax highlighting to the code examples. Corrected the master makefile so that the code will
+compile under RedHat Linux 6.1 with the JDK 1.2.2 RC2 (that's what I tested it on). Added a built-in error correction submission page to the HTML distribution, linked from each chapter. Did some work on the error correction submission CGI script on the web site so that it does line wrapping.
+
+<h4>Revision 5, January 31, 2000</h4> 
+Rewrote Chapter 1, adapted from new material in "Thinking in C++, 2nd edition Volume 1." Changed "Passing & Returning Objects" into appendix A, since it's a special/advanced topic. Added material and examples to the design patterns chapter. The WindowListener-windowClosing code in almost all examples now has a commented 'setDefaultCloseOperation(EXIT_ON_CLOSE)' in anticipation of Java 1.3, but a substitute version from com.bruceckel.swing so that it will compile in Java 1.2. Fixed IDL code generation and directory. All code compiles in Java 1.2 by typing 'make' in the root code directory.
+
+<h4>Revision 4, Nov 14 1999</h4> 
+Incremental changes and improvements. In particular, the swing demo HTML pages use frames and some adjustments have been made to the examples in that section to work better.
+
+<h4>Revision 3, October 17 1999</h4> 
+To the downloadable code, added HTML pages to run all applets in Chapter 13 and modified the height and width accordingly. Added Rahim Adatia's drag and drop example. Modified the last JSP examples. Added Bill Venner's Jini section.
+
+<h4>Revision 2, October 11 1999</h4> 
+Worked on the Enterprise chapter with Dave Bartlett; added preliminary section on EJBs from Robert Castaneda. Added a number of JSP examples.
+
+<h4>Revision 1, August 1999</h4> 
+With the aid of a few folks on the Internet (noted in the introduction), did a first rewrite of all the AWT examples so they use swing. NOTE: only the examples have changed, the prose has not been rewritten. In particular, Chapter 13 will need to be rewritten fairly thoroughly. However, the entire book compiles with the Java 2 SDK, Standard Edition, v 1.2 available from http://java.sun.com.   Source code can be found in zipped format at www.BruceEckel.com.<br>
+Changed all fonts to Times Roman & Courier so people don't have any font issues with the downloaded versions of the book (the printed version will use fonts selected by the designer, Daniel Will-Harris). Set up basic structure of the book. Removed the last chapter and distributed a couple of the programs to other chapters. Removed some appendices, to be posted instead on the web site, or integrated them into the chapters of the book. Hacked up the extractcode.cpp program from "Thinking in C++ 2nd edition" to work with this book. Added subdirectory indicators to all code files for extractcode to use.
+<hr>
+<!--------------------------------------------------------->
+<h2>To do:</h2>
+<UL>
+<LI>Final CD (final code on CD)
+<UL>
+<LI>Unzipped versions of books on CD
+<LI>Compiled java code on CD
+</UL>
+<LI>Add a web page to describe status & availability of exercise solutions
+<LI>Finalize index
+<LI>Index section headings
+<LI>Add rmic to makefile for RMI examples
+<LI>Comment collector in HTML version of book
+<LI>Watch for non-public constructors
+<LI>Find a free make utility to package with code
+</UL>
+<h2>Remember during builds:</h2>
+<UL>
+<LI>Put non-breaking space inside ( )
+<LI>Rebuild TOC & Indexes
+<LI>Replace fonts before making PDF file for printing
+<LI>Modify code trailers before RTF save
+</UL>
+<!--
+<LI>Check HTML applet pages under Linux
+<LI>Code evolution (only adding to the interface, calling the new function from the old, deprecating only if necessary)
+<LI>Look for explicit string conversions that don't need to be there.
+<LI>change print() functions to toString() functions
+<LI>Remove "foo" references
+<LI>Watch for "user" versus "client programmer"
+<LI>Doing your own deprecation in JavaDoc
+<LI>Doclets?
+<LI>More String material in an earlier chapter; is operator + and += introduced early enough?
+<LI>Using if(true) and if(false) for conditional compilation
+<LI>Release forms from Dave & others
+-->
+</UL>
+</HTML>

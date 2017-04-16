@@ -1,0 +1,98 @@
+<html><head><title>Display page for Trees at www.BruceEckel.com</title></head><FONT FACE="Verdana,Tahoma,Arial,Helvetica,Sans"><H2>Trees.java</H2><hr></FONT>
+<OBJECT classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+    width="250" height="250" align="baseline"
+    codebase="http://java.sun.com/products/plugin/1.2.2/jinstall-1_2_2-win.cab#Version=1,2,2,0">
+<PARAM NAME="code" VALUE="Trees.class">
+<PARAM NAME="codebase" VALUE=".">
+<PARAM NAME="type" VALUE="application/x-java-applet;version=1.2.2">
+<COMMENT>
+    <EMBED type="application/x-java-applet;version=1.2.2" 
+       width="250" height="250" align="baseline" 
+       code="Trees.class" 
+       codebase="."
+       pluginspage="http://java.sun.com/products/plugin/1.2/plugin-install.html">
+    <NOEMBED>
+    </COMMENT>
+       No Java 2 support for APPLET!!
+    </NOEMBED></EMBED>
+</OBJECT>
+<FONT SIZE="+3"><PRE><B>
+//: c13:Trees.java
+// From 'Thinking in Java, 2nd ed.' by Bruce Eckel
+// www.BruceEckel.com. See copyright notice in CopyRight.txt.
+// Simple Swing tree example. Trees can 
+// be made vastly more complex than this.
+// &lt;applet code=Trees
+//  width=250 height=250&gt;&lt;/applet&gt;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.tree.*;
+import com.bruceeckel.swing.*;
+
+// Takes an array of Strings and makes the first
+// element a node and the rest leaves:
+class Branch {
+  DefaultMutableTreeNode r;
+  public Branch(String[] data) {
+    r = new DefaultMutableTreeNode(data[0]);
+    for(int i = 1; i &lt; data.length; i++)
+      r.add(new DefaultMutableTreeNode(data[i]));
+  }
+  public DefaultMutableTreeNode node() { 
+    return r; 
+  }
+}  
+
+public class Trees extends JApplet {
+  String[][] data = {
+    { "Colors", "Red", "Blue", "Green" },
+    { "Flavors", "Tart", "Sweet", "Bland" },
+    { "Length", "Short", "Medium", "Long" },
+    { "Volume", "High", "Medium", "Low" },
+    { "Temperature", "High", "Medium", "Low" },
+    { "Intensity", "High", "Medium", "Low" },
+  };
+  static int i = 0;
+  DefaultMutableTreeNode root, child, chosen;
+  JTree tree;
+  DefaultTreeModel model;
+  public void init() {
+    Container cp = getContentPane();
+    root = new DefaultMutableTreeNode("root");
+    tree = new JTree(root);
+    // Add it and make it take care of scrolling:
+    cp.add(new JScrollPane(tree), 
+      BorderLayout.CENTER);
+    // Capture the tree's model:
+    model =(DefaultTreeModel)tree.getModel();
+    JButton test = new JButton("Press me");
+    test.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e){
+        if(i &lt; data.length) {
+          child = new Branch(data[i++]).node();
+          // What's the last one you clicked?
+          chosen = (DefaultMutableTreeNode)
+            tree.getLastSelectedPathComponent();
+          if(chosen == null) chosen = root;
+          // The model will create the 
+          // appropriate event. In response, the
+          // tree will update itself:
+          model.insertNodeInto(child, chosen, 0);
+          // This puts the new node on the 
+          // currently chosen node.
+        }
+      }
+    });
+    // Change the button's colors:
+    test.setBackground(Color.blue);
+    test.setForeground(Color.white);
+    JPanel p = new JPanel();
+    p.add(test);
+    cp.add(p, BorderLayout.SOUTH);
+  }
+  public static void main(String[] args) {
+    Console.run(new Trees(), 250, 250);
+  }
+} ///:~
+</B></PRE></FONT></body></html>

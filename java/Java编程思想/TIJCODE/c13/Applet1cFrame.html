@@ -1,0 +1,47 @@
+<html><head><title>Display page for Applet1c at www.BruceEckel.com</title></head><FONT FACE="Verdana,Tahoma,Arial,Helvetica,Sans"><H2>Applet1c.java</H2><hr></FONT>
+<OBJECT classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+    width="100" height="50" align="baseline"
+    codebase="http://java.sun.com/products/plugin/1.2.2/jinstall-1_2_2-win.cab#Version=1,2,2,0">
+<PARAM NAME="code" VALUE="Applet1c.class">
+<PARAM NAME="codebase" VALUE=".">
+<PARAM NAME="type" VALUE="application/x-java-applet;version=1.2.2">
+<COMMENT>
+    <EMBED type="application/x-java-applet;version=1.2.2" 
+       width="100" height="50" align="baseline" 
+       code="Applet1c.class" 
+       codebase="."
+       pluginspage="http://java.sun.com/products/plugin/1.2/plugin-install.html">
+    <NOEMBED>
+    </COMMENT>
+       No Java 2 support for APPLET!!
+    </NOEMBED></EMBED>
+</OBJECT>
+<FONT SIZE="+3"><PRE><B>
+//: c13:Applet1c.java
+// From 'Thinking in Java, 2nd ed.' by Bruce Eckel
+// www.BruceEckel.com. See copyright notice in CopyRight.txt.
+// An application and an applet.
+// &lt;applet code=Applet1c width=100 height=50&gt;
+// &lt;/applet&gt;
+import javax.swing.*;
+import java.awt.*;
+import com.bruceeckel.swing.*;
+
+public class Applet1c extends JApplet {
+  public void init() {
+    getContentPane().add(new JLabel("Applet!"));
+  }
+  // A main() for the application:
+  public static void main(String[] args) {
+    JApplet applet = new Applet1c();
+    JFrame frame = new JFrame("Applet1c");
+    // To close the application:
+    Console.setupClosing(frame);
+    frame.getContentPane().add(applet);
+    frame.setSize(100,50);
+    applet.init();
+    applet.start();
+    frame.setVisible(true);
+  }
+} ///:~
+</B></PRE></FONT></body></html>

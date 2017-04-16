@@ -1,0 +1,72 @@
+<html><head><title>Display page for Counter1 at www.BruceEckel.com</title></head><FONT FACE="Verdana,Tahoma,Arial,Helvetica,Sans"><H2>Counter1.java</H2><hr></FONT>
+<OBJECT classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+    width="300" height="100" align="baseline"
+    codebase="http://java.sun.com/products/plugin/1.2.2/jinstall-1_2_2-win.cab#Version=1,2,2,0">
+<PARAM NAME="code" VALUE="Counter1.class">
+<PARAM NAME="codebase" VALUE=".">
+<PARAM NAME="type" VALUE="application/x-java-applet;version=1.2.2">
+<COMMENT>
+    <EMBED type="application/x-java-applet;version=1.2.2" 
+       width="300" height="100" align="baseline" 
+       code="Counter1.class" 
+       codebase="."
+       pluginspage="http://java.sun.com/products/plugin/1.2/plugin-install.html">
+    <NOEMBED>
+    </COMMENT>
+       No Java 2 support for APPLET!!
+    </NOEMBED></EMBED>
+</OBJECT>
+<FONT SIZE="+3"><PRE><B>
+//: c14:Counter1.java
+// From 'Thinking in Java, 2nd ed.' by Bruce Eckel
+// www.BruceEckel.com. See copyright notice in CopyRight.txt.
+// A non-responsive user interface.
+// &lt;applet code=Counter1 width=300 height=100&gt;
+// &lt;/applet&gt;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+import com.bruceeckel.swing.*;
+
+public class Counter1 extends JApplet {
+  private int count = 0;
+  private JButton
+    start = new JButton("Start"),
+    onOff = new JButton("Toggle");
+  private JTextField t = new JTextField(10);
+  private boolean runFlag = true;
+  public void init() {
+    Container cp = getContentPane();
+    cp.setLayout(new FlowLayout());
+    cp.add(t);
+    start.addActionListener(new StartL());
+    cp.add(start);
+    onOff.addActionListener(new OnOffL());
+    cp.add(onOff);
+  }
+  public void go() {
+    while (true) {
+      try {
+        Thread.sleep(100);
+      } catch(InterruptedException e) {
+        System.err.println("Interrupted");
+      }
+      if (runFlag)
+        t.setText(Integer.toString(count++));
+    }
+  }
+  class StartL implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      go();
+    }
+  }
+  class OnOffL implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      runFlag = !runFlag;
+    }
+  }
+  public static void main(String[] args) {
+    Console.run(new Counter1(), 300, 100);
+  }
+} ///:~
+</B></PRE></FONT></body></html>

@@ -1,0 +1,160 @@
+<html><head><title>Display page for Counter5 at www.BruceEckel.com</title></head><FONT FACE="Verdana,Tahoma,Arial,Helvetica,Sans"><H2>Counter5.java</H2><hr></FONT>
+<OBJECT classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+    width="450" height="600" align="baseline"
+    codebase="http://java.sun.com/products/plugin/1.2.2/jinstall-1_2_2-win.cab#Version=1,2,2,0">
+<PARAM NAME="code" VALUE="Counter5.class">
+<PARAM NAME="codebase" VALUE=".">
+<PARAM NAME="type" VALUE="application/x-java-applet;version=1.2.2">
+<COMMENT>
+    <EMBED type="application/x-java-applet;version=1.2.2" 
+       width="450" height="600" align="baseline" 
+       code="Counter5.class" 
+       codebase="."
+       pluginspage="http://java.sun.com/products/plugin/1.2/plugin-install.html">
+    <NOEMBED>
+    </COMMENT>
+       No Java 2 support for APPLET!!
+    </NOEMBED></EMBED>
+</OBJECT>
+<FONT SIZE="+3"><PRE><B>
+//: c14:Counter5.java
+// From 'Thinking in Java, 2nd ed.' by Bruce Eckel
+// www.BruceEckel.com. See copyright notice in CopyRight.txt.
+// Adjusting the priorities of threads.
+// &lt;applet code=Counter5 width=450 height=600&gt;
+// &lt;/applet&gt;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import com.bruceeckel.swing.*;
+
+class Ticker2 extends Thread {
+  private JButton
+    b = new JButton("Toggle"),
+    incPriority = new JButton("up"),
+    decPriority = new JButton("down");
+  private JTextField
+    t = new JTextField(10),
+    pr = new JTextField(3); // Display priority
+  private int count = 0;
+  private boolean runFlag = true;
+  public Ticker2(Container c) {
+    b.addActionListener(new ToggleL());
+    incPriority.addActionListener(new UpL());
+    decPriority.addActionListener(new DownL());
+    JPanel p = new JPanel();
+    p.add(t);
+    p.add(pr);
+    p.add(b);
+    p.add(incPriority);
+    p.add(decPriority);
+    c.add(p);
+  }
+  class ToggleL implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      runFlag = !runFlag;
+    }
+  }
+  class UpL implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      int newPriority = getPriority() + 1;
+      if(newPriority &gt; Thread.MAX_PRIORITY)
+        newPriority = Thread.MAX_PRIORITY;
+      setPriority(newPriority);
+    }
+  }
+  class DownL implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      int newPriority = getPriority() - 1;
+      if(newPriority &lt; Thread.MIN_PRIORITY)
+        newPriority = Thread.MIN_PRIORITY;
+      setPriority(newPriority);
+    }
+  }
+  public void run() {
+    while (true) {
+      if(runFlag) {
+        t.setText(Integer.toString(count++));
+        pr.setText(
+          Integer.toString(getPriority()));
+      }
+      yield();
+    }
+  }
+}
+
+public class Counter5 extends JApplet {
+  private JButton
+    start = new JButton("Start"),
+    upMax = new JButton("Inc Max Priority"),
+    downMax = new JButton("Dec Max Priority");
+  private boolean started = false;
+  private static final int SIZE = 10;
+  private Ticker2[] s = new Ticker2[SIZE];
+  private JTextField mp = new JTextField(3);
+  public void init() {
+    Container cp = getContentPane();
+    cp.setLayout(new FlowLayout());
+    for(int i = 0; i &lt; s.length; i++)
+      s[i] = new Ticker2(cp);
+    cp.add(new JLabel(
+      "MAX_PRIORITY = " + Thread.MAX_PRIORITY));
+    cp.add(new JLabel("MIN_PRIORITY = "
+      + Thread.MIN_PRIORITY));
+    cp.add(new JLabel("Group Max Priority = "));
+    cp.add(mp);
+    cp.add(start);
+    cp.add(upMax);
+    cp.add(downMax);
+    start.addActionListener(new StartL());
+    upMax.addActionListener(new UpMaxL());
+    downMax.addActionListener(new DownMaxL());
+    showMaxPriority();
+    // Recursively display parent thread groups:
+    ThreadGroup parent =
+      s[0].getThreadGroup().getParent();
+    while(parent != null) {
+      cp.add(new Label(
+        "Parent threadgroup max priority = "
+        + parent.getMaxPriority()));
+      parent = parent.getParent();
+    }
+  }
+  public void showMaxPriority() {
+    mp.setText(Integer.toString(
+      s[0].getThreadGroup().getMaxPriority()));
+  }
+  class StartL implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      if(!started) {
+        started = true;
+        for(int i = 0; i &lt; s.length; i++)
+          s[i].start();
+      }
+    }
+  }
+  class UpMaxL implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      int maxp =
+        s[0].getThreadGroup().getMaxPriority();
+      if(++maxp &gt; Thread.MAX_PRIORITY)
+        maxp = Thread.MAX_PRIORITY;
+      s[0].getThreadGroup().setMaxPriority(maxp);
+      showMaxPriority();
+    }
+  }
+  class DownMaxL implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      int maxp =
+        s[0].getThreadGroup().getMaxPriority();
+      if(--maxp &lt; Thread.MIN_PRIORITY)
+        maxp = Thread.MIN_PRIORITY;
+      s[0].getThreadGroup().setMaxPriority(maxp);
+      showMaxPriority();
+    }
+  }
+  public static void main(String[] args) {
+    Console.run(new Counter5(), 450, 600);
+  }
+} ///:~
+</B></PRE></FONT></body></html>

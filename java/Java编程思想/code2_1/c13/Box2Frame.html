@@ -1,0 +1,50 @@
+<html><head><title>Display page for Box2 at www.BruceEckel.com</title></head><FONT FACE="Verdana,Tahoma,Arial,Helvetica,Sans"><H2>Box2.java</H2><hr></FONT>
+<OBJECT classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+    width="450" height="300" align="baseline"
+    codebase="http://java.sun.com/products/plugin/1.2.2/jinstall-1_2_2-win.cab#Version=1,2,2,0">
+<PARAM NAME="code" VALUE="Box2.class">
+<PARAM NAME="codebase" VALUE=".">
+<PARAM NAME="type" VALUE="application/x-java-applet;version=1.2.2">
+<COMMENT>
+    <EMBED type="application/x-java-applet;version=1.2.2" 
+       width="450" height="300" align="baseline" 
+       code="Box2.class" 
+       codebase="."
+       pluginspage="http://java.sun.com/products/plugin/1.2/plugin-install.html">
+    <NOEMBED>
+    </COMMENT>
+       No Java 2 support for APPLET!!
+    </NOEMBED></EMBED>
+</OBJECT>
+<FONT SIZE="+3"><PRE><B>
+//: c13:Box2.java
+// From 'Thinking in Java, 2nd ed.' by Bruce Eckel
+// www.BruceEckel.com. See copyright notice in CopyRight.txt.
+// Adding struts.
+// &lt;applet code=Box2 
+// width=450 height=300&gt; &lt;/applet&gt;
+import javax.swing.*;
+import java.awt.*;
+import com.bruceeckel.swing.*;
+
+public class Box2 extends JApplet {
+  public void init() {
+    Box bv = Box.createVerticalBox();
+    for(int i = 0; i &lt; 5; i++) {
+      bv.add(new JButton("" + i));
+      bv.add(Box.createVerticalStrut(i*10));
+    }
+    Box bh = Box.createHorizontalBox();
+    for(int i = 0; i &lt; 5; i++) {
+      bh.add(new JButton("" + i));
+      bh.add(Box.createHorizontalStrut(i*10));
+    }
+    Container cp = getContentPane();
+    cp.add(BorderLayout.EAST, bv);
+    cp.add(BorderLayout.SOUTH, bh);
+  }
+  public static void main(String[] args) {
+    Console.run(new Box2(), 450, 300);
+  }
+} ///:~
+</B></PRE></FONT></body></html>

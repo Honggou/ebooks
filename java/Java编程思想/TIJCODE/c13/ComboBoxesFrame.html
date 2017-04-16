@@ -1,0 +1,66 @@
+<html><head><title>Display page for ComboBoxes at www.BruceEckel.com</title></head><FONT FACE="Verdana,Tahoma,Arial,Helvetica,Sans"><H2>ComboBoxes.java</H2><hr></FONT>
+<OBJECT classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+    width="200" height="100" align="baseline"
+    codebase="http://java.sun.com/products/plugin/1.2.2/jinstall-1_2_2-win.cab#Version=1,2,2,0">
+<PARAM NAME="code" VALUE="ComboBoxes.class">
+<PARAM NAME="codebase" VALUE=".">
+<PARAM NAME="type" VALUE="application/x-java-applet;version=1.2.2">
+<COMMENT>
+    <EMBED type="application/x-java-applet;version=1.2.2" 
+       width="200" height="100" align="baseline" 
+       code="ComboBoxes.class" 
+       codebase="."
+       pluginspage="http://java.sun.com/products/plugin/1.2/plugin-install.html">
+    <NOEMBED>
+    </COMMENT>
+       No Java 2 support for APPLET!!
+    </NOEMBED></EMBED>
+</OBJECT>
+<FONT SIZE="+3"><PRE><B>
+//: c13:ComboBoxes.java
+// From 'Thinking in Java, 2nd ed.' by Bruce Eckel
+// www.BruceEckel.com. See copyright notice in CopyRight.txt.
+// Using drop-down lists.
+// &lt;applet code=ComboBoxes
+// width=200 height=100&gt; &lt;/applet&gt;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+import com.bruceeckel.swing.*;
+
+public class ComboBoxes extends JApplet {
+  String[] description = { "Ebullient", "Obtuse",
+    "Recalcitrant", "Brilliant", "Somnescent",
+    "Timorous", "Florid", "Putrescent" };
+  JTextField t = new JTextField(15);
+  JComboBox c = new JComboBox();
+  JButton b = new JButton("Add items");
+  int count = 0;
+  public void init() {
+    for(int i = 0; i &lt; 4; i++)
+      c.addItem(description[count++]);
+    t.setEditable(false);
+    b.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e){
+        if(count &lt; description.length)
+          c.addItem(description[count++]);
+      }
+    });
+    c.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e){
+        t.setText("index: "+ c.getSelectedIndex()
+          + "   " + ((JComboBox)e.getSource())
+          .getSelectedItem());
+      }
+    });
+    Container cp = getContentPane();
+    cp.setLayout(new FlowLayout());
+    cp.add(t);
+    cp.add(c);
+    cp.add(b);
+  }
+  public static void main(String[] args) {
+    Console.run(new ComboBoxes(), 200, 100);
+  }
+} ///:~
+</B></PRE></FONT></body></html>

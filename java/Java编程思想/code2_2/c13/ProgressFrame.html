@@ -1,0 +1,53 @@
+<html><head><title>Display page for Progress at www.BruceEckel.com</title></head><FONT FACE="Verdana,Tahoma,Arial,Helvetica,Sans"><H2>Progress.java</H2><hr></FONT>
+<OBJECT classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+    width="300" height="200" align="baseline"
+    codebase="http://java.sun.com/products/plugin/1.2.2/jinstall-1_2_2-win.cab#Version=1,2,2,0">
+<PARAM NAME="code" VALUE="Progress.class">
+<PARAM NAME="codebase" VALUE=".">
+<PARAM NAME="type" VALUE="application/x-java-applet;version=1.2.2">
+<COMMENT>
+    <EMBED type="application/x-java-applet;version=1.2.2" 
+       width="300" height="200" align="baseline" 
+       code="Progress.class" 
+       codebase="."
+       pluginspage="http://java.sun.com/products/plugin/1.2/plugin-install.html">
+    <NOEMBED>
+    </COMMENT>
+       No Java 2 support for APPLET!!
+    </NOEMBED></EMBED>
+</OBJECT>
+<FONT SIZE="+3"><PRE><B>
+//: c13:Progress.java
+// From 'Thinking in Java, 2nd ed.' by Bruce Eckel
+// www.BruceEckel.com. See copyright notice in CopyRight.txt.
+// Using progress bars and sliders.
+// &lt;applet code=Progress
+//  width=300 height=200&gt;&lt;/applet&gt;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.event.*;
+import javax.swing.border.*;
+import com.bruceeckel.swing.*;
+
+public class Progress extends JApplet {
+  JProgressBar pb = new JProgressBar();
+  JSlider sb = 
+    new JSlider(JSlider.HORIZONTAL, 0, 100, 60);
+  public void init() {
+    Container cp = getContentPane();
+    cp.setLayout(new GridLayout(2,1));
+    cp.add(pb);
+    sb.setValue(0);
+    sb.setPaintTicks(true);
+    sb.setMajorTickSpacing(20);
+    sb.setMinorTickSpacing(5);
+    sb.setBorder(new TitledBorder("Slide Me"));
+    pb.setModel(sb.getModel()); // Share model
+    cp.add(sb);
+  }
+  public static void main(String[] args) {
+    Console.run(new Progress(), 300, 200);
+  }
+} ///:~
+</B></PRE></FONT></body></html>

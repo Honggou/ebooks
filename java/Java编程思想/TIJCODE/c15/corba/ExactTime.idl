@@ -1,0 +1,10 @@
+//: c15:corba:ExactTime.idl
+//# You must install idltojava.exe from 
+//# java.sun.com and adjust the settings to use
+//# your local C preprocessor in order to compile
+//# This file. See docs at java.sun.com.
+module remotetime {
+   interface ExactTime {
+      string getTime();
+   };
+}; ///:~
