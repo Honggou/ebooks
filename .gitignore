@@ -9,6 +9,4 @@
 *.log.*
 *.sig
 ._*
-
-pkg/
-src/
+*.db
