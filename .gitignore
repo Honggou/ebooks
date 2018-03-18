@@ -10,3 +10,4 @@
 *.sig
 ._*
 *.db
+*.DS_Store
